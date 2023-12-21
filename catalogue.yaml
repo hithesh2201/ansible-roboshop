@@ -1,0 +1,82 @@
+---
+- name: Setup and Configure Catalogue Service
+  hosts: catalogue
+  become: yes  # This allows the playbook to run with elevated privileges (sudo)
+
+  tasks:
+    - name: Disable existing Node.js module
+      dnf:
+        name: nodejs
+        state: absent
+
+    - name: Enable Node.js 18 module
+      dnf:
+        name: nodejs:18
+        state: present
+
+    - name: Install Node.js
+      dnf:
+        name: nodejs
+        state: present
+
+    - name: Add application user roboshop
+      user:
+        name: roboshop
+        system: yes
+        shell: /sbin/nologin
+
+    - name: Create app directory
+      file:
+        path: /app
+        state: directory
+        owner: roboshop
+        group: roboshop
+
+    - name: Download application code
+      get_url:
+        url: https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+        dest: /tmp/catalogue.zip
+
+    - name: Extract application code
+      unarchive:
+        src: /tmp/catalogue.zip
+        dest: /app
+
+    - name: Install application dependencies
+      npm:
+        path: /app
+
+    - name: Setup systemd Catalogue Service
+      template:
+        src: catalogue.service.j2
+        dest: /etc/systemd/system/catalogue.service
+      notify:
+        - Reload systemd
+
+    - name: Reload systemd
+      systemd:
+        daemon_reload: yes
+
+    - name: Enable and start Catalogue service
+      systemd:
+        name: catalogue
+        enabled: yes
+        state: started
+
+    - name: Configure MongoDB repository
+      copy:
+        content: |
+          [mongodb-org-4.2]
+          name=MongoDB Repository
+          baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/
+          gpgcheck=0
+          enabled=1
+        dest: /etc/yum.repos.d/mongo.repo
+
+    - name: Install MongoDB client
+      dnf:
+        name: mongodb-org-shell
+        state: present
+
+    - name: Load Schema
+      shell: mongo --host 172.31.43.181 </app/schema/catalogue.js ansible
