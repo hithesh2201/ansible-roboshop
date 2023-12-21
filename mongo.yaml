@@ -10,7 +10,7 @@
                   baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/
                   gpgcheck=0
                   enabled=1
-        path: /etc/yum.repos.d/mongo.repo
+        dest: /etc/yum.repos.d/mongo.repo
     - name: install mongodb required version
       dnf:
         name: mongodb-org
