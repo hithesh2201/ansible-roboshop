@@ -27,6 +27,6 @@
         replace: '0.0.0.0'
     - name : restart mongodb
       service:
-        name: mongodb-org
+        name: mongod
         state: restarted
 
