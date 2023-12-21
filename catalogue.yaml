@@ -10,9 +10,7 @@
         state: absent
 
     - name: Enable Node.js 18 module
-      dnf:
-        name: nodejs:18
-        state: present
+      shell: curl -fsSL https://rpm.nodesource.com/setup_18.x | sudo bash -
 
     - name: Install Node.js
       dnf:
