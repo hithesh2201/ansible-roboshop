@@ -55,6 +55,7 @@
     - name: Reload systemd
       systemd:
         daemon_reload: yes
+      listen: "Reload systemd"
 
     - name: Enable and start Catalogue service
       systemd:
