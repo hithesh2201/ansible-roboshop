@@ -1,4 +1,4 @@
-- name: COnfiguring nginx server
+- name: Configuring nginx server
   hosts: localhost
   become : yes
   tasks:
