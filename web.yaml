@@ -8,6 +8,7 @@
         state: present
     - name: enable and start
       service:
+        name: nginx
         enabled: true
         state: started
     - name: removing default html file
