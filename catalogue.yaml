@@ -36,7 +36,7 @@
         dest: /tmp/catalogue.zip
 
     - name: Extract application code
-      unarchive:
+      ansible.builtin.unarchive:
         src: /tmp/catalogue.zip
         dest: /app
 
