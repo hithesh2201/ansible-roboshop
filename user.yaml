@@ -1,0 +1,6 @@
+- name: user
+  hosts: user.hiteshshop.online
+  become: yes
+  tasks:
+    - name: disable and enable version of nodejs:18
+      shell: dnf module disable nodejs -y ; dnf module enable nodejs:18 -y
