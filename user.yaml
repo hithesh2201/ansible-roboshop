@@ -17,7 +17,7 @@
         state: directory
     - name: download content and keep it in /tmp/catalogue.zip
       get_url:
-        src: https://roboshop-builds.s3.amazonaws.com/user.zip
+        url: https://roboshop-builds.s3.amazonaws.com/user.zip
         dst: /tmp/user.zip
     - name: unzip user at /app path
       ansible.builtin.unarchive:
