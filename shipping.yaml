@@ -1,5 +1,5 @@
 - name: Shipping
-  hosts: shipping
+  hosts: 172.31.94.36
   become : yes
   tasks:
   - name : install maven
@@ -26,10 +26,10 @@
     shell: mvn clean package
     args:
         chdir: /app
-        
+
   - name: rename file
     shell : mv target/shipping-1.0.jar shipping.jar
-  - name: congigure shipping service 
+  - name: configure shipping service 
     copy:
       src: shipping.service
       dest: /etc/systemd/system/shipping.service
