@@ -9,8 +9,8 @@
     - name: add user
       user:
         name: roboshop
-    - name : create app folder
-      file:
+    - name: create app folder in root 
+      ansible.builtin.file:
         path: /app
         state: directory
     - name : download content
