@@ -1,5 +1,5 @@
 - name: cart
-  hosts: cart.hiteshshop.online
+  hosts: cart
   become: yes
   tasks:
     - name: disable and enable nodejs:18

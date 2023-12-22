@@ -1,5 +1,5 @@
 - name : Redis
-  hosts: redis.hiteshshop.online
+  hosts: redis
   become: yes
   tasks:
     - name: Get required version of redis
