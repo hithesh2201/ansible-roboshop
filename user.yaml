@@ -11,8 +11,51 @@
     - name: add user
       ansible.builtin.user:
         name: roboshop
-    - name: 
+    - name: create app folder in root 
       ansible.builtin.file:
-        path: app
+        path: /app
         state: directory
+    - name: download content and keep it in /tmp/catalogue.zip
+      get_url:
+        src: https://roboshop-builds.s3.amazonaws.com/user.
+        dst: /tmp/user.zip
+    - name: unzip user at /app path
+      ansible.builtin.unarchive:
+        src: /tmp/user.zip
+        dest: /app
+        remote_src: yes
+    - name: intall dependencies
+      npm:
+        path: /app
+    - name: congiure user service
+      copy:
+      src: user.service
+      dst: /etc/systemd/system/user.service
+    - name: daemon_reload
+      systemd:
+        daemon_reload: yes
+    - name : enable and start user
+      service:
+        name: user
+        state: started
+        enabled: yes
+    - name: Configure MongoDB repository
+      copy:
+        content: |
+          [mongodb-org-4.2]
+          name=MongoDB Repository
+          baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/
+          gpgcheck=0
+          enabled=1
+        dest: /etc/yum.repos.d/mongo.repo
+
+    - name: Install MongoDB client
+      dnf:
+        name: mongodb-org-shell
+        state: present
+
+    - name: Load Schema
+      shell: mongo --host mongodb.hiteshshop.online </app/schema/catalogue.js ansible
+
+
 
