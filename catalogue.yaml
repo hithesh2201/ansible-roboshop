@@ -1,6 +1,6 @@
 ---
 - name: Setup and Configure Catalogue Service
-  hosts: catalogue
+  hosts: localhost
   become: yes  # This allows the playbook to run with elevated privileges (sudo)
 
   tasks:
