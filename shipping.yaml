@@ -23,7 +23,7 @@
     - name: install dependencies
       shell: mvn clean package
       args:
-          chdir: /app
+        chdir: /app
 
     - name: rename file
       shell : mv target/shipping-1.0.jar shipping.jar
