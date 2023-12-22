@@ -32,7 +32,6 @@
       copy:
         src: cart.service
         dest: /etc/systemd/system/cart.service
-        remote_src: yes
     - name : system daemon_reload
       systemd:
         daemon_reload: yes
