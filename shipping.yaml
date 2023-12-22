@@ -10,7 +10,8 @@
     user:
       name: roboshop
   - name : create app folder
-    path: /app
+    file:
+      path: /app
   - name : download content
     get_url:
       url: https://roboshop-builds.s3.amazonaws.com/shipping.zip
