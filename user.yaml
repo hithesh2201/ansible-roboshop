@@ -13,6 +13,6 @@
         name: roboshop
     - name: 
       ansible.builtin.file:
-        path: /app
+        path: app
         state: directory
 
