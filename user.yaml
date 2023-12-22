@@ -29,8 +29,8 @@
         path: /app
     - name: congiure user service
       copy:
-      src: user.service
-      dst: /etc/systemd/system/user.service
+        src: user.service
+        dst: /etc/systemd/system/user.service
     - name: daemon_reload
       systemd:
         daemon_reload: yes
