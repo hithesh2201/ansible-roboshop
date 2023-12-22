@@ -1,6 +1,6 @@
 ---
 - name: Setup and Configure Catalogue Service
-  hosts: localhost
+  hosts: catalogue
   become: yes  # This allows the playbook to run with elevated privileges (sudo)
 
   tasks:
@@ -76,4 +76,4 @@
         state: present
 
     - name: Load Schema
-      shell: mongo --host 172.31.43.181 </app/schema/catalogue.js ansible
+      shell: mongo --host mongodb.hiteshshop.online </app/schema/catalogue.js ansible
