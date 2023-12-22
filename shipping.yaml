@@ -2,49 +2,49 @@
   hosts: shipping
   become : yes
   tasks:
-  - name : install maven
-    dnf:
-      name: maven
-      state: present
-  - name: add user
-    user:
-      name: roboshop
-  - name : create app folder
-    file:
-      path: /app
-      state: directory
-  - name : download content
-    get_url:
-      url: https://roboshop-builds.s3.amazonaws.com/shipping.zip
-      dest: /tmp/shipping.zip
-  - name: unzip
-    unarchive:
-      src : /tmp/shipping.zip
-      dest: /app
-      remote_src: yes
-  - name: install dependencies
-    shell: mvn clean package
-    args:
-        chdir: /app
+    - name : install maven
+      dnf:
+        name: maven
+        state: present
+    - name: add user
+      user:
+        name: roboshop
+    - name : create app folder
+      file:
+        path: /app
+        state: directory
+    - name : download content
+      get_url:
+        url: https://roboshop-builds.s3.amazonaws.com/shipping.zip
+        dest: /tmp/shipping.zip
+    - name: unzip
+      unarchive:
+        src : /tmp/shipping.zip
+        dest: /app
+        remote_src: yes
+    - name: install dependencies
+      shell: mvn clean package
+      args:
+          chdir: /app
 
-  - name: rename file
-    shell : mv target/shipping-1.0.jar shipping.jar
-  - name: configure shipping service 
-    copy:
-      src: shipping.service
-      dest: /etc/systemd/system/shipping.service
-  - name: Reload
-    systemd:
-      daemon_reload: yes
-  - name : enable and start
-    service:
-      name: shipping
-      state: started
-      enabled: yes
-  - name: install mysql
-    shell: dnf install mysql -y
-  - name: load data
-    shell: mysql -h mysql.hiteshshop.online -uroot -pRoboShop@1 < /app/schema/shipping.sql 
-  - name: restart shipping
-    service:
-      state: restarted
+    - name: rename file
+      shell : mv target/shipping-1.0.jar shipping.jar
+    - name: configure shipping service 
+      copy:
+        src: shipping.service
+        dest: /etc/systemd/system/shipping.service
+    - name: Reload
+      systemd:
+        daemon_reload: yes
+    - name : enable and start
+      service:
+        name: shipping
+        state: started
+        enabled: yes
+    - name: install mysql
+      shell: dnf install mysql -y
+    - name: load data
+      shell: mysql -h mysql.hiteshshop.online -uroot -pRoboShop@1 < /app/schema/shipping.sql 
+    - name: restart shipping
+      service:
+        state: restarted
