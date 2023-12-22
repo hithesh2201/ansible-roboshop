@@ -19,6 +19,10 @@
       get_url:
         url: https://roboshop-builds.s3.amazonaws.com/cart.zip
         dest: /tmp/cart.zip
+    - name: Extract cart zip file
+      unarchive:
+        path: /tmp/cart.zip
+        
     - name: install dependencies
       npm:
         path: /app
