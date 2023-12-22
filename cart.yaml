@@ -21,8 +21,9 @@
         dest: /tmp/cart.zip
     - name: Extract cart zip file
       unarchive:
-        path: /tmp/cart.zip
-        
+        src: /tmp/cart.zip
+        dest: /app
+
     - name: install dependencies
       npm:
         path: /app
