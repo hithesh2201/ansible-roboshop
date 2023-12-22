@@ -53,9 +53,9 @@
         - Reload systemd
 
     - name: Reload systemd
-      systemd:
-        daemon_reload: yes
-      listen: "Reload systemd"
+      ansible.builtin.systemd_service:
+        name: catalogue
+        daemon_reload: true
 
     - name: Enable and start Catalogue service
       systemd:
