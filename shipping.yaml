@@ -39,7 +39,8 @@
       enabled: yes
   - name: install mysql
     shell: dnf install mysql -y
-  - name: mysql -h mysql.hiteshshop.online -uroot -pRoboShop@1 < /app/schema/shipping.sql 
+  - name: load data
+    shell: mysql -h mysql.hiteshshop.online -uroot -pRoboShop@1 < /app/schema/shipping.sql 
   - name: restart shipping
     service:
       state: restarted
