@@ -1,6 +1,6 @@
 - name: Shipping
-  hosts: shipping
-  become : yes
+  hosts: shipping.hiteshshop.online
+  become: yes
   tasks:
     - name : install maven
       dnf:
