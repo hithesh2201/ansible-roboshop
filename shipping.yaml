@@ -3,9 +3,7 @@
   become: yes
   tasks:
     - name : install maven
-      dnf:
-        name: maven
-        state: present
+      shell: dnf install maven -y
     - name: add user
       user:
         name: roboshop
