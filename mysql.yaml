@@ -21,6 +21,7 @@
       service:
         state: started
         enabled: yes
+        name: mysqld
     - name: set password
       shell: mysql_secure_installation --set-root-pass RoboShop@1
     
