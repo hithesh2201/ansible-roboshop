@@ -52,10 +52,11 @@
       notify:
         - Reload systemd
 
-    - name: Reload systemd
-      ansible.builtin.systemd_service:
-        name: catalogue
-        daemon_reload: true
+      handlers:
+      - name: Reload systemd
+        systemd:
+          daemon_reload: yes
+        listen: "Reload systemd"
 
     - name: Enable and start Catalogue service
       systemd:
