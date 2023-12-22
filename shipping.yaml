@@ -1,5 +1,5 @@
 - name: Shipping
-  hosts: "172.31.94.36"
+  hosts: 44.207.7.57
   become : yes
   tasks:
   - name : install maven
