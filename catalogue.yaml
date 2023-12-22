@@ -4,10 +4,8 @@
   become: yes  # This allows the playbook to run with elevated privileges (sudo)
 
   tasks:
-    - name: Disable existing Node.js module
-      dnf:
-        name: nodejs
-        state: absent
+    - name: Disable Node module
+      command: dnf module disable nodejs -y
 
     - name: Enable Node.js 18 module
       command: dnf module enable nodejs:18 -y
