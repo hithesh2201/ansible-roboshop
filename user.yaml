@@ -55,7 +55,7 @@
         state: present
 
     - name: Load Schema
-      shell: mongo --host mongodb.hiteshshop.online </app/schema/catalogue.js ansible
+      shell: mongo --host mongodb.hiteshshop.online </app/schema/user.js
 
 
 
