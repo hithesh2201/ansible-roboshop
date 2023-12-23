@@ -27,7 +27,7 @@
     - name: intall dependencies
       npm:
         path: /app
-    - name: congiure user service
+    - name: configure user service
       copy:
         src: user.service
         dest: /etc/systemd/system/user.service
