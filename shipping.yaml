@@ -31,10 +31,8 @@
         chdir: /app
     - name: configure shipping service 
       copy:
-        src: shipping.service
+        src: /home/centos/ansible-roboshop/shipping.service
         dest: /etc/systemd/system/shipping.service
-      args:
-        chdir: /ansible-roboshop
     - name: Reload
       systemd:
         daemon_reload: yes
