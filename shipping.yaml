@@ -32,7 +32,7 @@
       register: out
     - name:
       debug:
-        msg: {{out}}
+        msg: "{{out}}"
     - name: configure shipping service 
       copy:
         src: shipping.service
