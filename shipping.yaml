@@ -33,8 +33,10 @@
       copy:
         src: shipping.service
         dest: /etc/systemd/system/shipping.service
+      remote_src: yes
       args:
         chdir: ~/ansible-roboshop
+      
     - name: Reload
       systemd:
         daemon_reload: yes
