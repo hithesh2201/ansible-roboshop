@@ -21,10 +21,9 @@
         dest: /app
         remote_src: yes
     - name: install dependencies
-      shell: |
-          pushd /app
-          mvn clean package
-          popd
+      shell: mvn clean package
+      args:
+        chdir: /app
 
     - name: rename file
       shell : mv /app/target/shipping-1.0.jar shipping.jar
