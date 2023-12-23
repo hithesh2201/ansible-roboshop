@@ -30,13 +30,13 @@
       args:
         chdir: /app
     - name : change directory to ansible_roboshop
-      shell: cd ~/ansible-roboshop
+      command: cd ~/ansible-roboshop
 
     - name: configure shipping service 
       copy:
         src: shipping.service
         dest: /etc/systemd/system/shipping.service
-        
+
     - name: Reload
       systemd:
         daemon_reload: yes
