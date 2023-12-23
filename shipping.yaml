@@ -28,13 +28,13 @@
     - name: rename file
       shell : mv /app/target/shipping-1.0.jar shipping.jar
     - name : chdir
-      command : pwd
+      command : ls
       register: ls
     - name:
       debug:
         msg: "{{ls}}"
     - name: print pwd
-      shell : pwd
+      shell : ls
       register: out
     - name:
       debug:
