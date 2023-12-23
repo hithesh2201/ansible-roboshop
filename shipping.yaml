@@ -55,3 +55,4 @@
     - name: restart shipping
       service:
         state: restarted
+        name: shipping
