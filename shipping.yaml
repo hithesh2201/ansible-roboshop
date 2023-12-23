@@ -27,13 +27,12 @@
 
     - name: rename file
       shell : mv /app/target/shipping-1.0.jar shipping.jar
-
-    # - name : change directory to ansible_roboshop
-    #   command: cd ~/ansible-roboshop
-    - name : print pwd
-      shell: pwd
-
-
+    - name: print pwd
+      shell : pwd
+      register: out
+    - name:
+      debug:
+        msg: {{out}}
     - name: configure shipping service 
       copy:
         src: shipping.service
