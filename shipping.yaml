@@ -26,9 +26,9 @@
         chdir: /app
 
     - name: rename file
-      shell : mv app/target/shipping-1.0.jar shipping.jar
+      shell : mv target/shipping-1.0.jar shipping.jar
       args:
-        remote_src: yes
+        chdir: /app
     - name: configure shipping service 
       copy:
         src: shipping.service
