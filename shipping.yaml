@@ -26,9 +26,8 @@
         chdir: /app
 
     - name: rename file
-      shell : mv target/shipping-1.0.jar shipping.jar
-      args:
-        path: /app
+      shell : mv /app/target/shipping-1.0.jar shipping.jar
+
     # - name : change directory to ansible_roboshop
     #   command: cd ~/ansible-roboshop
 
