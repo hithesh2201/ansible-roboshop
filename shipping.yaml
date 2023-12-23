@@ -30,12 +30,15 @@
 
     # - name : change directory to ansible_roboshop
     #   command: cd ~/ansible-roboshop
+    - name : print pwd
+      shell: pwd
+
 
     - name: configure shipping service 
       copy:
         src: shipping.service
         dest: /etc/systemd/system/shipping.service
-        remote_src: yes
+
 
     - name: Reload
       systemd:
