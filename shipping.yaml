@@ -46,4 +46,4 @@
     #     name: shipping
   - name: Display current working directory
     debug:
-      msg: "Current working directory: {{ shipping.pwd }}"
+      msg: "Current working directory: {{ ansible_env.HOME }}"
