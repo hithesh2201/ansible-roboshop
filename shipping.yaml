@@ -29,13 +29,16 @@
       shell : mv target/shipping-1.0.jar shipping.jar
       args:
         chdir: /app
+    - name : change directory to ansible_roboshop
+      args:
+        chdir: ~/ansible-roboshop
+
     - name: configure shipping service 
       copy:
         src: shipping.service
         dest: /etc/systemd/system/shipping.service
       remote_src: yes
-      args:
-        chdir: ~/ansible-roboshop
+      
       
     - name: Reload
       systemd:
