@@ -30,7 +30,7 @@
       args:
         chdir: /app
     - name : change directory to ansible_roboshop
-      shell: ~/ansible-roboshop
+      shell: cd ~/ansible-roboshop
 
     - name: configure shipping service 
       copy:
