@@ -24,27 +24,10 @@
       shell: mvn clean package
       args:
         chdir: /app
-
-    - name: rename file
-      shell : mv /app/target/shipping-1.0.jar shipping.jar
-    - name : chdir
-      command : ls
-      register: ls
-    - name:
-      debug:
-        msg: "{{ls}}"
-    - name: print pwd
-      shell : ls
-      register: out
-    - name:
-      debug:
-        msg: "{{out}}"
     - name: configure shipping service 
       copy:
         src: shipping.service
         dest: /etc/systemd/system/shipping.service
-
-
     - name: Reload
       systemd:
         daemon_reload: yes
@@ -55,8 +38,8 @@
         enabled: yes
     - name: install mysql
       shell: dnf install mysql -y
-    # - name: load data
-    #   shell: mysql -h mysql.hiteshshop.online -uroot -pRoboShop@1 < /app/schema/shipping.sql 
+    - name: load data
+      shell: mysql -h mysql.hiteshshop.online -uroot -pRoboShop@1 < /app/schema/shipping.sql 
     - name: restart shipping
       service:
         state: restarted
