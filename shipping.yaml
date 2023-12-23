@@ -31,20 +31,10 @@
         chdir: /app
     - name: configure shipping service 
       copy:
-        content: |
-                  [Unit]
-                  Description=Shipping Service
-
-                  [Service]
-                  User=roboshop
-                  Environment=CART_ENDPOINT=cart.hiteshshop.online:8080
-                  Environment=DB_HOST=mysql.hiteshshop.online
-                  ExecStart=/bin/java -jar /app/shipping.jar
-                  SyslogIdentifier=shipping
-
-                  [Install]
-                  WantedBy=multi-user.target
+        src: shipping.service
         dest: /etc/systemd/system/shipping.service
+      args:
+        chdir: ~/ansible-roboshop
     - name: Reload
       systemd:
         daemon_reload: yes
@@ -55,8 +45,8 @@
         enabled: yes
     - name: install mysql
       shell: dnf install mysql -y
-    - name: load data
-      shell: mysql -h mysql.hiteshshop.online -uroot -pRoboShop@1 < /app/schema/shipping.sql 
+    # - name: load data
+    #   shell: mysql -h mysql.hiteshshop.online -uroot -pRoboShop@1 < /app/schema/shipping.sql 
     - name: restart shipping
       service:
         state: restarted
