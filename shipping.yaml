@@ -47,3 +47,5 @@
   - name: Display current working directory
     debug:
       msg: "Current working directory: {{ ansible_env.HOME }}"
+    args:
+    chdir: /app
