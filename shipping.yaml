@@ -35,6 +35,7 @@
       copy:
         src: shipping.service
         dest: /etc/systemd/system/shipping.service
+      remote_src: yes
 
     - name: Reload
       systemd:
