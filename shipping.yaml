@@ -28,7 +28,7 @@
     - name: rename file
       shell : mv /app/target/shipping-1.0.jar shipping.jar
     - name : chdir
-      shell : ls
+      command : pwd
       register: ls
     - name:
       debug:
