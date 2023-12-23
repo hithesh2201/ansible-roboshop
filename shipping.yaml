@@ -48,4 +48,4 @@
     debug:
       msg: "Current working directory: {{ ansible_env.HOME }}"
     args:
-    chdir: /app
+      chdir: /app
