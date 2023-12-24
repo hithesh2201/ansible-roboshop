@@ -4,11 +4,11 @@
   tasks:
     - name: install some softwares related to python
       dnf:
-        state: present
         name: '{{item}}'
-        loops:
-          - python36
-          - gcc
-          - python3-devel
+        state: present
+      loop:
+        - python36
+        - gcc
+        - python3-devel
   
 
