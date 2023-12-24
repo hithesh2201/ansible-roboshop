@@ -6,9 +6,9 @@
       dnf:
         state: present
         name: '{{item}}'
-      loops:
-        - python36
-        - gcc
-        - python3-devel
+        loops:
+          - python36
+          - gcc
+          - python3-devel
   
 
