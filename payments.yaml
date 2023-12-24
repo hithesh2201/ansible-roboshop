@@ -13,5 +13,34 @@
     - name: add user
       user:
         name: roboshop
+    - name: create directory
+      file:
+        path : /app
+        state: directory
+    - name: download content
+      get_url:
+        url: https://roboshop-builds.s3.amazonaws.com/payment.zip
+        dest: /tmp/payment.zip
+    - name: unarchive
+      unarchive:
+        src: /tmp/payment.zip
+        dest: /app
+        remote_src: yes
+    - name: install dependencies
+      shell : pip3.6 install -r requirements.txt
+      args:
+        chdir: /app
+    - name: configure payment.service
+      copy:
+        src: payment.service
+        dest: /etc/systemd/system/payment.service
+    - name: Reload
+      systemd:
+        daemon_reload: yes
+    - name: enable and start
+      service:
+        name: payments
+        state: started
+        enabled: yes
       
 
