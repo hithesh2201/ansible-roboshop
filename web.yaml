@@ -9,7 +9,7 @@
     - name: enable and start
       service:
         name: nginx
-        enabled: true
+        enabled: yes
         state: started
     - name: removing default html file
       file:
