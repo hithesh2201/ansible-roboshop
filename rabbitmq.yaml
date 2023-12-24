@@ -24,4 +24,4 @@
         # state: present
     - name: set permissions
       shell: rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
-      
+#tail -f /var/log/rabbitmq/rabbit@your_hostname.log
