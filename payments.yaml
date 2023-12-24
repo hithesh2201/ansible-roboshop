@@ -39,7 +39,7 @@
         daemon_reload: yes
     - name: enable and start
       service:
-        name: payments
+        name: payment
         state: started
         enabled: yes
       
