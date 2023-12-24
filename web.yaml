@@ -1,6 +1,6 @@
 - name: Configuring nginx server
   hosts: web
-  become : yes
+  become: yes
   tasks:
     - name : install nginx
       dnf:
