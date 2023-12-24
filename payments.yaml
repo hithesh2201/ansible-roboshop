@@ -1,0 +1,14 @@
+- name: configuring payments
+  hosts: payments
+  become: yes
+  tasks:
+    - name : install some softwares related to python
+      dnf:
+        state: present
+        name: '{{item}}'
+      loops:
+        - python36
+        - gcc
+        - python3-devel
+  
+
