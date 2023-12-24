@@ -1,5 +1,5 @@
 - name: configuring rabbitmq
-  hosts: localhost
+  hosts: 172.31.94.124
   become: yes
   tasks:
     - name: yum repo
