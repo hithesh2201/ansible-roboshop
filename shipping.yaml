@@ -24,6 +24,10 @@
       shell: mvn clean package
       args:
         chdir: /app
+    - name: rename
+      shell: mv target/shipping-1.0.jar shipping.jar
+      args:
+        chdir: /app
     - name: configure shipping service 
       copy:
         src: shipping.service
