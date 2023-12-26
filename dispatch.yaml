@@ -18,9 +18,10 @@
         url: https://roboshop-builds.s3.amazonaws.com/dispatch.zip
         dest: /tmp/dispatch.zip
     - name: unarchive
-      src: /tmp/dispatch.zip
-      dest: /app
-      remote_src: yes
+      unarchive:
+        src: /tmp/dispatch.zip
+        dest: /app
+        remote_src: yes
     - name: install dependencies
       shell : go mod init dispatch ;go get ; go build
       args:
